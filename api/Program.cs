@@ -24,5 +24,19 @@ app.UseCors("AppCors");
 app.MapGet("/ping", () => Results.Ok(new { message = "pong" }));
 app.MapGet("/time", () => Results.Ok(new { utc = DateTime.UtcNow }));
 
+// Additional endpoints
+app.MapGet("/greet", (string? name) =>
+{
+    var target = string.IsNullOrWhiteSpace(name) ? "world" : name.Trim();
+    return Results.Ok(new { message = $"Hello, {target}!" });
+});
+
+app.MapPost("/echo", async (HttpContext httpContext) =>
+{
+    using var reader = new StreamReader(httpContext.Request.Body);
+    var body = await reader.ReadToEndAsync();
+    return Results.Ok(new { echo = body });
+});
+
 app.Run();
 
