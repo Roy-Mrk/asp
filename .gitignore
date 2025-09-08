@@ -1,0 +1,38 @@
+# OS
+.DS_Store
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+.cache/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# dotenv
+.env
+.env.*
+!.env.example
+
+# Docker
+**/docker-entrypoint.sh.bak
+
+# VSCode
+.vscode/
+
+# macOS
+Icon\r
+
+# ASP.NET Core / .NET
+bin/
+obj/
+
+# NuGet cache volumes (handled by docker volume)
+**/.nuget/
+
+# Logs
+logs/
+*.pid
+

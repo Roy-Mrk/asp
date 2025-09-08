@@ -1,0 +1,31 @@
+services:
+  api:
+    build: ./api
+    volumes:
+      - ./api:/src
+      - dotnet-nuget:/root/.nuget/packages
+    working_dir: /src
+    command: ["dotnet", "watch", "run", "--urls", "http://0.0.0.0:5000"]
+    ports:
+      - "5001:5000"
+    environment:
+      - ASPNETCORE_URLS=http://0.0.0.0:5000
+      - ASPNETCORE_ENVIRONMENT=Development
+      - CORS_ORIGINS=http://localhost:3000
+    depends_on: []
+  web:
+    build: ./web
+    volumes:
+      - ./web:/app
+      - /app/node_modules
+    working_dir: /app
+    command: ["npm", "run", "dev"]
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_BASE_URL=http://localhost:5001
+    depends_on:
+      - api
+
+volumes:
+  dotnet-nuget:
