@@ -72,6 +72,7 @@ export default function Home() {
   return (
     <main style={{ fontFamily: 'system-ui', padding: 24 }}>
       <h1>Roy-Mrk's portfolio (Next.js + ASP.NET Core)</h1>
+      <p><a href="/login">Go to Login</a></p>
       <p>API Base: {process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000'}</p>
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: 'crimson' }}>Error: {error}</p>}
