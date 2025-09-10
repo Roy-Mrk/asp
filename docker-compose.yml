@@ -5,14 +5,21 @@ services:
       - ./api:/src
       - dotnet-nuget:/root/.nuget/packages
     working_dir: /src
-    command: ["dotnet", "watch", "run", "--urls", "http://0.0.0.0:5000"]
+    command: ["dotnet", "run", "--urls", "http://0.0.0.0:5000"]
     ports:
       - "5001:5000"
     environment:
       - ASPNETCORE_URLS=http://0.0.0.0:5000
       - ASPNETCORE_ENVIRONMENT=Development
       - CORS_ORIGINS=http://localhost:3000
-    depends_on: []
+      - JWT_KEY=dev_secret_key_change_me_32chars_min_required_!
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=appdb
+      - MYSQL_USER=appuser
+      - MYSQL_PASSWORD=apppass
+    depends_on:
+      - mysql
   web:
     build: ./web
     volumes:
@@ -26,6 +33,18 @@ services:
       - NEXT_PUBLIC_API_BASE_URL=http://localhost:5001
     depends_on:
       - api
+  mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpass
+      - MYSQL_DATABASE=appdb
+      - MYSQL_USER=appuser
+      - MYSQL_PASSWORD=apppass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
 
 volumes:
   dotnet-nuget:
+  mysql-data:
