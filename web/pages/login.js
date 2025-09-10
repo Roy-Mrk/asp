@@ -39,28 +39,28 @@ export default function LoginPage() {
 
   return (
     <main style={{ fontFamily: 'system-ui', padding: 24, maxWidth: 520, margin: '0 auto' }}>
-      <h1>Login</h1>
+      <h1>ログイン</h1>
       <form onSubmit={doLogin} style={{ display: 'grid', gap: 12 }}>
         <input
-          placeholder="username"
+          placeholder="ユーザー名"
           value={form.username}
           onChange={(e) => setForm({ ...form, username: e.target.value })}
           style={{ padding: 10, border: '1px solid #ccc', borderRadius: 6 }}
         />
         <input
-          placeholder="password"
+          placeholder="パスワード"
           type="password"
           value={form.password}
           onChange={(e) => setForm({ ...form, password: e.target.value })}
           style={{ padding: 10, border: '1px solid #ccc', borderRadius: 6 }}
         />
-        <button type="submit" style={{ padding: '10px 14px' }}>Login</button>
+        <button type="submit" style={{ padding: '10px 14px' }}>ログイン</button>
       </form>
 
       {token && (
         <section style={{ marginTop: 16 }}>
-          <p>Token: <span style={{ wordBreak: 'break-all' }}>{token.slice(0, 12)}...{token.slice(-12)}</span></p>
-          <button onClick={getMe} style={{ padding: '8px 12px' }}>Me</button>
+          <p>トークン: <span style={{ wordBreak: 'break-all' }}>{token.slice(0, 12)}...{token.slice(-12)}</span></p>
+          <button onClick={getMe} style={{ padding: '8px 12px' }}>自分を取得</button>
           {me && (
             <pre style={{ background: '#f5f5f5', padding: 12, marginTop: 12 }}>
 {JSON.stringify(me, null, 2)}
@@ -70,7 +70,7 @@ export default function LoginPage() {
       )}
 
       <p style={{ marginTop: 24 }}>
-        <a href="/">← Back to Home</a>
+        <a href="/">← ホームへ戻る</a>
       </p>
     </main>
   );

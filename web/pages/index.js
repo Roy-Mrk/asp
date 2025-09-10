@@ -71,11 +71,11 @@ export default function Home() {
 
   return (
     <main style={{ fontFamily: 'system-ui', padding: 24 }}>
-      <h1>Roy-Mrk's portfolio (Next.js + ASP.NET Core)</h1>
-      <p><a href="/login">Go to Login</a></p>
-      <p>API Base: {process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000'}</p>
-      {loading && <p>Loading...</p>}
-      {error && <p style={{ color: 'crimson' }}>Error: {error}</p>}
+      <h1>ポートフォリオ（Next.js + ASP.NET Core）</h1>
+      <p><a href="/login">ログインページへ</a></p>
+      <p>API 基本URL: {process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000'}</p>
+      {loading && <p>読み込み中...</p>}
+      {error && <p style={{ color: 'crimson' }}>エラー: {error}</p>}
       {data && (
         <pre style={{ background: '#f5f5f5', padding: 12 }}>
 {JSON.stringify(data, null, 2)}
@@ -83,19 +83,19 @@ export default function Home() {
       )}
 
       <section style={{ marginTop: 24 }}>
-        <h2>Greet</h2>
+        <h2>あいさつ</h2>
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
           <input
-            placeholder="Your name (optional)"
+            placeholder="お名前（任意）"
             value={name}
             onChange={(e) => setName(e.target.value)}
             style={{ padding: 8, border: '1px solid #ccc', borderRadius: 4 }}
           />
-          <button onClick={handleGreet} style={{ padding: '8px 12px' }}>Say Hello</button>
+          <button onClick={handleGreet} style={{ padding: '8px 12px' }}>あいさつする</button>
         </div>
         <div style={{ marginTop: 12 }}>
-          {greet?.loading && <p>Loading...</p>}
-          {greet?.error && <p style={{ color: 'crimson' }}>Error: {greet.error}</p>}
+          {greet?.loading && <p>読み込み中...</p>}
+          {greet?.error && <p style={{ color: 'crimson' }}>エラー: {greet.error}</p>}
           {greet?.data && (
             <pre style={{ background: '#f5f5f5', padding: 12 }}>
 {JSON.stringify(greet.data, null, 2)}
@@ -105,27 +105,27 @@ export default function Home() {
       </section>
 
       <section style={{ marginTop: 24 }}>
-        <h2>Auth</h2>
+        <h2>ログイン</h2>
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
           <input
-            placeholder="username"
+            placeholder="ユーザー名"
             value={loginForm.username}
             onChange={(e) => setLoginForm({ ...loginForm, username: e.target.value })}
             style={{ padding: 8, border: '1px solid #ccc', borderRadius: 4 }}
           />
           <input
-            placeholder="password"
+            placeholder="パスワード"
             type="password"
             value={loginForm.password}
             onChange={(e) => setLoginForm({ ...loginForm, password: e.target.value })}
             style={{ padding: 8, border: '1px solid #ccc', borderRadius: 4 }}
           />
-          <button onClick={handleLogin} style={{ padding: '8px 12px' }}>Login</button>
-          <button onClick={handleMe} disabled={!token} style={{ padding: '8px 12px' }}>Me</button>
+          <button onClick={handleLogin} style={{ padding: '8px 12px' }}>ログイン</button>
+          <button onClick={handleMe} disabled={!token} style={{ padding: '8px 12px' }}>自分を取得</button>
         </div>
         <div style={{ marginTop: 12 }}>
           {token && (
-            <p>Token: <span style={{ wordBreak: 'break-all' }}>{token.slice(0, 12)}...{token.slice(-12)}</span></p>
+            <p>トークン: <span style={{ wordBreak: 'break-all' }}>{token.slice(0, 12)}...{token.slice(-12)}</span></p>
           )}
           {me && (
             <pre style={{ background: '#f5f5f5', padding: 12 }}>
